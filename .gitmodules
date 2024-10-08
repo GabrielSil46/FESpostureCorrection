@@ -1,0 +1,12 @@
+[submodule "2dVideoTrackingContainer"]
+    path = 2dVideoTrackingContainer
+    url = git@github.com:isd-iin-els/2dVideoTrackingContainer.git
+[submodule "diagramwebapp"]
+    path = diagramwebapp
+    url = git@github.com:isd-iin-els/diagramwebapp.git
+[submodule "processData/neurolabkit"]
+	path = processData/neurolabkit
+	url = git@github.com:isd-iin-els/neurolabkit.git
+[submodule "broker"]
+	path = broker
+	url = git@github.com:isd-iin-els/brokermqttDocker.git

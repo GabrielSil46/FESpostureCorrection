@@ -1,0 +1,38 @@
+version: '2.2'
+services:
+
+  broker:
+    # Referencia o serviço 'dlconline' do docker-compose.yml dentro de 2dVideoTrackingContainer
+    container_name: broker
+    extends:
+      file: ./broker/docker-compose.yml
+      service: broker
+
+  dlctest:
+    # Referencia o serviço 'dlconline' do docker-compose.yml dentro de 2dVideoTrackingContainer
+    container_name: dlctest
+    extends:
+      file: ./2dVideoTrackingContainer/docker-compose.yml
+      service: dlctest
+    depends_on:
+      - broker
+
+  dataprocessingbox:
+    # Referencia o serviço 'dataprocessingBox' do docker-compose.yml dentro de processData
+    container_name: dataprocessingBox
+    extends:
+      file: ./processData/docker-compose.yml
+      service: dataprocessingbox
+    depends_on:
+      - broker
+
+  web:
+    # Referencia o serviço 'webdiagram' do docker-compose.yml dentro de diagramwebapp
+    container_name: web
+    extends:
+      file: ./diagramwebapp/docker-compose.yml
+      service: web
+    depends_on:
+      - broker
+      #- dlctest
+      #- dataprocessingbox
