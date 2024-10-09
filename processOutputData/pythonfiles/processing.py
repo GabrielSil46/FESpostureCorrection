@@ -4,20 +4,20 @@ import threading
 
 
 
-input = MQTTServiceManager(
+processing = MQTTServiceManager(
             service_description="Simple service to simulate a person's walk",
-            service_id="1234",
-            service_type="input",
+            service_id="2345",
             hostname='10.1.0.18',
             port = 1883,
         )
 
-def tesFunction(data):
-    input.publish(input.stream_topic, "1,2,3,4")
-    print(data)
+def processData(data):
+    output_data = data
+    processing.publish(processing.stream_topic, output_data)
+    print(output_data)
 
-input.add_service(tesFunction)
+processing.add_listener(processData)
 
-input.connect()
+processing.connect()
 
 

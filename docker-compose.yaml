@@ -8,14 +8,14 @@ services:
       file: ./broker/docker-compose.yml
       service: broker
 
-  dlctest:
-    # Referencia o serviço 'dlconline' do docker-compose.yml dentro de 2dVideoTrackingContainer
-    container_name: dlctest
-    extends:
-      file: ./2dVideoTrackingContainer/docker-compose.yml
-      service: dlctest
-    depends_on:
-      - broker
+  # dlctest:
+  #   # Referencia o serviço 'dlconline' do docker-compose.yml dentro de 2dVideoTrackingContainer
+  #   container_name: dlctest
+  #   extends:
+  #     file: ./2dVideoTrackingContainer/docker-compose.yml
+  #     service: dlctest
+  #   depends_on:
+  #     - broker
 
   dataprocessingbox:
     # Referencia o serviço 'dataprocessingBox' do docker-compose.yml dentro de processData
@@ -23,6 +23,24 @@ services:
     extends:
       file: ./processData/docker-compose.yml
       service: dataprocessingbox
+    depends_on:
+      - broker
+    
+  dataprocessinginputbox:
+    # Referencia o serviço 'dataprocessingBox' do docker-compose.yml dentro de processData
+    container_name: dataprocessinginputbox
+    extends:
+      file: ./processInputData/docker-compose.yml
+      service: dataprocessinginputbox
+    depends_on:
+      - broker
+
+  dataprocessingoutput:
+    # Referencia o serviço 'dataprocessingBox' do docker-compose.yml dentro de processData
+    container_name: dataprocessingoutput
+    extends:
+      file: ./processOutputData/docker-compose.yml
+      service: dataprocessingoutput
     depends_on:
       - broker
 

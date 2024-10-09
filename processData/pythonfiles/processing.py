@@ -12,7 +12,7 @@ processing = MQTTServiceManager(
         )
 
 def processData(data):
-    output_data = 10*data
+    output_data = data.decode('utf8')
     processing.publish(processing.stream_topic, output_data)
     print(output_data)
 

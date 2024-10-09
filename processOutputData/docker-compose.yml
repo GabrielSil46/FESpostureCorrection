@@ -1,0 +1,9 @@
+version: '2.2'
+services:
+  dataprocessingoutput:
+    network_mode: host
+    container_name: dataprocessingoutput
+    build: 
+        context: .
+        dockerfile: dockerfiles/processData.Dockerfile
+    restart: always  # Optional: ensures the container restarts if it fails

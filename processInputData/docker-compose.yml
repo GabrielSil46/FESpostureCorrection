@@ -1,0 +1,9 @@
+version: '2.2'
+services:
+  dataprocessinginputbox:
+    network_mode: host
+    container_name: dataprocessinginputbox
+    build: 
+        context: .
+        dockerfile: dockerfiles/processData.Dockerfile
+    restart: always  # Optional: ensures the container restarts if it fails
